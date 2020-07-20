@@ -1,0 +1,26 @@
+proxy:
+  title: Open Analytics Shiny Proxy
+  logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
+  landing-page: /
+  heartbeat-rate: 10000
+  heartbeat-timeout: 60000
+  port: 8080
+  authentication: none
+  container-backend: kubernetes
+  kubernetes:
+    internal-networking: true
+  specs:
+  - id: 01_hello
+    display-name: Hello Application
+    description: Application which demonstrates the basics of a Shiny app
+    container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
+    container-image: openanalytics/shinyproxy-demo
+  - id: 06_tabsets
+    container-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
+    container-image: openanalytics/shinyproxy-demo
+  service:
+    type: LoadBalancer
+    ports: {}
+logging:
+  level:
+    io.fabric8.kubernetes: DEBUG

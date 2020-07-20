@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: shiny
+  name: shiny
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shiny
+  template:
+    metadata:
+      labels:
+        app: shiny
+      annotations:
+        checksum/config-map: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+      - image: remche/shinyproxy:2.3.1
+        name: shinyproxy
+        env:
+        - name: KUBERNETES_AUTH_TRYSERVICEACCOUNT
+          value: "true"
+        volumeMounts:
+        - name: application-conf
+          mountPath: /opt/shinyproxy/application.yml
+          subPath: application.yml
+      serviceAccountName: shiny
+      volumes:
+      - name: application-conf
+        configMap:
+          name: shiny
