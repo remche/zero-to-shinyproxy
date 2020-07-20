@@ -11,8 +11,6 @@ proxy:
     description: Application which demonstrates the basics of a Shiny app
     container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
     container-image: openanalytics/shinyproxy-demo
-  - id: 02_test
-    container-image: gricad-registry.univ-grenoble-alpes.fr/cailletr/aspire:3ccdfd36
   - id: 06_tabsets
     container-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
     container-image: openanalytics/shinyproxy-demo
