@@ -26,9 +26,6 @@ spec:
       containers:
         - name: shinyproxy
           image: {{ .Values.proxy.image.name }}:{{ .Values.proxy.image.tag }}
-#          env:
-#          - name: KUBERNETES_AUTH_TRYSERVICEACCOUNT
-#            value: "true"
           volumeMounts:
           - name: application-conf
             mountPath: /opt/shinyproxy/application.yml
