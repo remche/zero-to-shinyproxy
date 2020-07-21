@@ -1,6 +1,6 @@
-# Zero to Shinyproxy
+# Zero to ShinyProxy
 
-This chart allows to deploy Shinyproxy on Kubernetes. It is still on an early version.
+This chart allows to deploy ShinyProxy on Kubernetes. It is still on an early version.
 
 ## Installation
 
