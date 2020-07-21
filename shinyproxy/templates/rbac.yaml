@@ -10,7 +10,7 @@ metadata:
 rules:
   - apiGroups: [""]       # "" indicates the core API group
     resources: ["pods"]
-    verbs: ["get", "watch", "list", "create", "delete"]
+    verbs: ["get", "create", "delete"]
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
