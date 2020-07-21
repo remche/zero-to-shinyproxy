@@ -19,7 +19,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: shiny
-    namespace: default
+    namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
   apiGroup: rbac.authorization.k8s.io
