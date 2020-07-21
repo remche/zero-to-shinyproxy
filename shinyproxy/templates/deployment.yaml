@@ -2,30 +2,39 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: shiny
+    {{- include "shinyproxy.labels" . | nindent 4 }}
   name: shiny
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shiny
+      {{- include "shinyproxy.labels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: shiny
+        {{- include "shinyproxy.labels" . | nindent 8 }}
+        {{- if .Values.proxy.labels }}
+        {{- .Values.proxy.labels | toYaml | trimSuffix "\n" | nindent 8 }}
+        {{- end }}
       annotations:
         checksum/config-map: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- if .Values.proxy.annotations }}
+        {{- .Values.proxy.annotations | toYaml | trimSuffix "\n" | nindent 8 }}
+        {{- end }}
     spec:
+      nodeSelector: {{ toJson .Values.proxy.nodeSelector }}
       containers:
-      - image: remche/shinyproxy:2.3.1
-        name: shinyproxy
-        env:
-        - name: KUBERNETES_AUTH_TRYSERVICEACCOUNT
-          value: "true"
-        volumeMounts:
-        - name: application-conf
-          mountPath: /opt/shinyproxy/application.yml
-          subPath: application.yml
+        - name: shinyproxy
+          image: {{ .Values.proxy.image.name }}:{{ .Values.proxy.image.tag }}
+#          env:
+#          - name: KUBERNETES_AUTH_TRYSERVICEACCOUNT
+#            value: "true"
+          volumeMounts:
+          - name: application-conf
+            mountPath: /opt/shinyproxy/application.yml
+            subPath: application.yml
+          resources:
+            {{- .Values.proxy.resources | toYaml | trimSuffix "\n" | nindent 12 }}
       serviceAccountName: shiny
       volumes:
       - name: application-conf

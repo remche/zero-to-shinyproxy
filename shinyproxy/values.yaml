@@ -13,9 +13,19 @@ proxy:
   container-backend: kubernetes
   kubernetes:
     internal-networking: true
+  image:
+    name: remche/shinyproxy
+    tag: 2.3.1
+  labels: {}
+  annotations: {}
+  nodeSelector: {}
   service:
     type: ClusterIP
     annotations: {}
     ports:
       nodePort:
     loadBalancerIP:
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
