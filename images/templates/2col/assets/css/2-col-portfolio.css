@@ -33,6 +33,8 @@ footer {
 
 .img-responsive { 
 	max-height: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .image-box {
 	min-height: 300px;

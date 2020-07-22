@@ -28,4 +28,6 @@ footer {
 }
 .img-responsive { 
 	max-height: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
