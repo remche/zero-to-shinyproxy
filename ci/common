@@ -8,7 +8,7 @@ setup_k3d () {
     echo "setup k3d"
     curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh \
   | TAG=v3.0.0 bash
-    k3d cluster create --wait --switch-context
+    k3d --verbose cluster create --wait --switch-context
 }
 
 await_traefik() {
