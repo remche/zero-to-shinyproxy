@@ -13,3 +13,7 @@ $ helm upgrade --install remche/shinyproxy -f config.yaml
 ## Configuration
 
 See [test-values.yaml](./test-values.yaml) and default [values](./shinyproxy/values.yaml).
+
+## Documentation
+
+Soon ©
