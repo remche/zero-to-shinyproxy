@@ -14,7 +14,7 @@ setup_k3d () {
     echo "setup k3d"
     curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh \
   | TAG=${K3D_VERSION} bash
-    k3d create -n shiny --publish 8000:80 
+    k3d create -n shiny --wait 60 
 }
 
 await_traefik() {
