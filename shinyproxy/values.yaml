@@ -29,3 +29,6 @@ proxy:
     requests:
       cpu: 200m
       memory: 512Mi
+    limits:
+      cpu: 300m
+      memory: 800Mi
