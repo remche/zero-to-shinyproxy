@@ -7,7 +7,8 @@ setup_helm () {
 setup_kubectl(){
     echo "setup kubectl"
     sudo curl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
-    chmod +x /usr/local/bin/kubectl
+    sudo chmod +x /usr/local/bin/kubectl
+    export KUBECONFIG="$(k3d get-kubeconfig --name='shiny')"
 }
 
 setup_k3d () {
