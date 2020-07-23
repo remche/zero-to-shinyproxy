@@ -28,4 +28,5 @@ env:
     #- K3S_VERSION=v1.16.10+k3s1 k3s_disable_command=--no-deploy CONFIG_FILE=dev-config.yaml
   global:
     - HELM_VERSION=v3.2.4
+    - K3D_VERSION=v1.7.0
 

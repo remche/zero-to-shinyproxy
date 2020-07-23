@@ -4,10 +4,16 @@ setup_helm () {
     curl -sf https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | DESIRED_VERSION=${HELM_VERSION} bash
 }
 
+setup_kubectl(){
+    echo "setup kubectl"
+    sudo curl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
+    chmod +x /usr/local/bin/kubectl
+}
+
 setup_k3d () {
     echo "setup k3d"
     curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh \
-  | TAG=v3.0.0 bash
+  | TAG=${K3D_VERSION} bash
     k3d --verbose cluster create --wait --switch-context
 }
 
