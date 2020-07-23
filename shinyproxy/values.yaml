@@ -2,6 +2,14 @@ ingress:
   enabled: false
   hosts: []
   tls: []
+appPod:
+  resources:
+    requests:
+      cpu: 200m
+      memory: 100Mi
+    limits:
+      cpu: 300m
+      memory: 200Mi
 proxy:
   title: Open Analytics Shiny Proxy
   logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
