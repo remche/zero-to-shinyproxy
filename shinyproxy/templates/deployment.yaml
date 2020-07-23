@@ -32,6 +32,10 @@ spec:
             subPath: application.yml
           resources:
             {{- .Values.proxy.resources | toYaml | trimSuffix "\n" | nindent 12 }}
+          {{- if .Values.proxy.readinessProbe }}
+          readinessProbe:
+            {{- .Values.proxy.readinessProbe | toYaml | trimSuffix "\n" | nindent 12 }}
+          {{- end }}
       serviceAccountName: shiny
       volumes:
       - name: application-conf

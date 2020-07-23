@@ -23,7 +23,7 @@ script:
   - helm lint shinyproxy
   - helm install shiny ./shinyproxy --values $CONFIG_FILE
   - await_shinyproxy
-  - sleep 60 && curl --fail -I http://shiny.test:8000
+  - curl --fail -I http://shiny.test:8000
 
 env:
   jobs:
