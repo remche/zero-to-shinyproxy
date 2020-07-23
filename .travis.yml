@@ -1,0 +1,31 @@
+os: linux
+dist: bionic
+language: python
+git:
+  depth: false
+services:
+  - docker
+
+stages:
+  - name: test
+
+before_install:
+  - set -e
+  - . ci/common
+
+install:
+  # Setup our k3s based Kubernetes cluster and use its kubectl as well
+  - setup_k3d
+  - setup_helm
+script:
+  - helm install shiny ./shinyproxy --values $CONFIG_FILE
+  - await_shinyproxy
+
+env:
+  jobs:
+    - K3S_VERSION=v1.18.3+k3s1 CONFIG_FILE=test-values.yaml
+    #- K3S_VERSION=v1.17.6+k3s1 CONFIG_FILE=dev-config.yaml
+    #- K3S_VERSION=v1.16.10+k3s1 k3s_disable_command=--no-deploy CONFIG_FILE=dev-config.yaml
+  global:
+    - HELM_VERSION=v3.2.4
+

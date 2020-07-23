@@ -1,0 +1,22 @@
+#!/bin/sh
+setup_helm () {
+    echo "setup helm ${HELM_VERSION}"
+    curl -sf https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | DESIRED_VERSION=${HELM_VERSION} bash
+}
+
+setup_k3d () {
+    echo "setup k3d"
+    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh \
+  | TAG=v3.0.0 bash
+    k3d cluster create --wait --switch-context
+}
+
+await_traefik() {
+    kubectl rollout status --watch --timeout 300s deployment/shinyproxy \
+ || {
+        echo "Startup of ShinyProxy failed!"
+        kubectl describe pod -l app.kubernetes.io/name=shinyproxy
+        kubectl logs deployment/shinyproxy --all-containers # --prefix
+        exit 1
+    }
+}
