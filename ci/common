@@ -30,5 +30,5 @@ await_shinyproxy() {
         kubectl logs deployment/shinyproxy --all-containers # --prefix
         exit 1
     }
-    kubectl wait pod -l app.kubernetes.io/name=shinyproxy --for=condition=Ready --timeout=300s
+    kubectl wait pod -l app.kubernetes.io/name=shinyproxy --for=condition=Ready --timeout=300s && sleep 30
 }
