@@ -7,7 +7,7 @@ proxy:
   logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
   readinessProbe:
     httpGet:
-      path: /login
+      path: /
       port: 8080
   specs:
   - id: 01_hello
