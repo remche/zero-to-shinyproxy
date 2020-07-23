@@ -15,6 +15,7 @@ before_install:
 
 install:
   # Setup our k3s based Kubernetes cluster and use its kubectl as well
+  - setup_hosts
   - setup_k3d
   - setup_kubectl
   - setup_helm
@@ -22,6 +23,7 @@ script:
   - helm lint shinyproxy
   - helm install shiny ./shinyproxy --values $CONFIG_FILE
   - await_shinyproxy
+  - curl --fail -I http://shiny.test
 
 env:
   jobs:

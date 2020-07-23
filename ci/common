@@ -1,5 +1,9 @@
 #!/bin/sh
-setup_helm () {
+setup_hosts(){
+    sudo sed -i -re "s/^(127.0.0.1\\s.+)/\\1 shiny.test/" /etc/hosts
+}
+
+setup_helm(){
     echo "setup helm ${HELM_VERSION}"
     curl -sf https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | DESIRED_VERSION=${HELM_VERSION} bash
 }
@@ -15,7 +19,7 @@ setup_k3d () {
     echo "setup k3d"
     curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh \
   | TAG=${K3D_VERSION} bash
-    k3d create -n shiny -i docker.io/rancher/k3s:${K3S_VERSION} -t 60 
+    k3d create -n shiny -i docker.io/rancher/k3s:${K3S_VERSION} -t 60  -p 8000:80
 }
 
 await_shinyproxy() {
