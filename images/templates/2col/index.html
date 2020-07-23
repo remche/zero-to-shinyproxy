@@ -48,7 +48,7 @@
 		                <h3>
 		                    <a th:href="@{/app/}+${app.id}" th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></a>
 		                </h3>
-		                <p th:if="${app.description != null}" th:text="${app.description}" ></p>
+		                <p th:if="${app.description != null}" th:utext="${app.description}" ></p>
 	            	</div>
 	            </div>
 			</div>

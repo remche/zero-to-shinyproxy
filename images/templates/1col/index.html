@@ -43,7 +43,7 @@
 				</div>
 				<div class="col-md-5">
 					<h3 th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></h3>
-					<p th:if="${app.description != null}" th:text="${app.description}"></p>
+					<p th:if="${app.description != null}" th:utext="${app.description}"></p>
 					<a class="btn btn-primary" th:href="@{/app/}+${app.id}">Start  <span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 			</div>
