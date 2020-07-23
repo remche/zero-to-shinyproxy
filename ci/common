@@ -18,7 +18,7 @@ setup_k3d () {
     k3d create -n shiny --wait 60 
 }
 
-await_traefik() {
+await_shinyproxy() {
     kubectl rollout status --watch --timeout 300s deployment/shinyproxy \
  || {
         echo "Startup of ShinyProxy failed!"
