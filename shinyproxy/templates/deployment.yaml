@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     {{- include "shinyproxy.labels" . | nindent 4 }}
-  name: shiny
+  name: shinyproxy
 spec:
   replicas: 1
   selector:
