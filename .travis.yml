@@ -19,6 +19,7 @@ install:
   - setup_kubectl
   - setup_helm
 script:
+  - helm lint shinyproxy
   - helm install shiny ./shinyproxy --values $CONFIG_FILE
   - await_shinyproxy
 
