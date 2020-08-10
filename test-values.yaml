@@ -9,7 +9,7 @@ proxy:
     httpGet:
       path: /
       port: 8080
-      initialDelaySeconds: 30
+    initialDelaySeconds: 30
   specs:
   - id: 01_hello
     display-name: Hello Application
