@@ -1,5 +1,7 @@
 # Zero to ShinyProxy
 
+[![Build Status](https://travis-ci.com/remche/zero-to-shinyproxy.svg?branch=master)](https://travis-ci.com/remche/zero-to-shinyproxy)
+
 This chart allows to deploy ShinyProxy on Kubernetes. It is still on an early version.
 
 ## Installation
