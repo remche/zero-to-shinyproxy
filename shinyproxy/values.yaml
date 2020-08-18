@@ -25,6 +25,7 @@ proxy:
     ports:
       nodePort:
     loadBalancerIP:
+  readinessProbe: {}
   resources:
     requests:
       cpu: 200m

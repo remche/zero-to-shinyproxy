@@ -1,0 +1,34 @@
+#!/bin/sh
+setup_hosts(){
+    sudo sed -i -re "s/^(127.0.0.1\\s.+)/\\1 shiny.test/" /etc/hosts
+}
+
+setup_helm(){
+    echo "setup helm ${HELM_VERSION}"
+    curl -sf https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | DESIRED_VERSION=${HELM_VERSION} bash
+}
+
+setup_kubectl(){
+    echo "setup kubectl"
+    sudo curl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
+    sudo chmod +x /usr/local/bin/kubectl
+    export KUBECONFIG="$(k3d get-kubeconfig --name='shiny')"
+}
+
+setup_k3d () {
+    echo "setup k3d"
+    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh \
+  | TAG=${K3D_VERSION} bash
+    k3d create -n shiny -i docker.io/rancher/k3s:${K3S_VERSION} -t 60  -p 8000:80
+}
+
+await_shinyproxy() {
+    kubectl rollout status --watch --timeout 300s deployment/shinyproxy \
+ || {
+        echo "Startup of ShinyProxy failed!"
+        kubectl describe pod -l app.kubernetes.io/name=shinyproxy
+        kubectl logs deployment/shinyproxy --all-containers # --prefix
+        exit 1
+    }
+    kubectl wait pod -l app.kubernetes.io/name=shinyproxy --for=condition=Ready --timeout=300s
+}
