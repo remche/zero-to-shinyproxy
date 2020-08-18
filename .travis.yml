@@ -23,8 +23,8 @@ script:
   - helm lint shinyproxy
   - helm install shiny ./shinyproxy --values $CONFIG_FILE
   - await_shinyproxy
-  - curl --fail -I http://shiny.test:8000
-
+  - pip install --no-cache-dir -r dev-requirements.txt
+  - pytest --verbose --exitfirst ./tests
 env:
   jobs:
     - K3S_VERSION=v1.18.6-k3s1 CONFIG_FILE=test-values.yaml
