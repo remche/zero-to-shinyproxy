@@ -4,7 +4,7 @@ metadata:
   name: shiny
 data:
 {{- $values := pick .Values "proxy" "logging" }}
-{{- $_ := set $values "proxy" (omit $values.proxy "image" "annotations" "labels" "nodeSelector" "resources" "service") }}
+{{- $_ := set $values "proxy" (omit $values.proxy "image" "annotations" "labels" "nodeSelector" "resources" "service" "ldap" "kerberos" "keycloak" "openid" "saml" "social" "users") }}
 {{- range .Values.proxy.specs }}
   {{- if not (index . "container-memory-request") }}
     {{- $_ := set . "container-memory-request" $.Values.appPod.resources.requests.memory }}

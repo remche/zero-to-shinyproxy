@@ -18,6 +18,7 @@ spec:
         {{- end }}
       annotations:
         checksum/config-map: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secrets: {{ include (print .Template.BasePath "/secrets.yaml") . | sha256sum }}
         {{- if .Values.proxy.annotations }}
         {{- .Values.proxy.annotations | toYaml | trimSuffix "\n" | nindent 8 }}
         {{- end }}
@@ -26,6 +27,12 @@ spec:
       containers:
         - name: shinyproxy
           image: {{ .Values.proxy.image.name }}:{{ .Values.proxy.image.tag }}
+          env:
+            - name: SPRING_APPLICATION_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: shiny
+                  key: secrets.json 
           volumeMounts:
           - name: application-conf
             mountPath: /opt/shinyproxy/application.yml
