@@ -14,10 +14,9 @@ $ helm upgrade --install remche/shinyproxy -f config.yaml
 
 ## Configuration
 
-See [test-values.yaml](./test-values.yaml) and default [values](./shinyproxy/values.yaml).
+See [doc.md](doc.md).
 
 ## Documentation
-> :warning: work in progress !
 
 ### ShinyProxy configuration
 You can specify ShinyProxy configuration like you would do in [application.yaml](https://www.shinyproxy.io/configuration/). Relevant fields will be injected via ConfigMap and Secret.

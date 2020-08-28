@@ -1,15 +1,22 @@
 ingress:
+  # ingress.enabled -- Whether to expose via ingress controller
   enabled: false
+  # ingress.hosts -- The hostname that should be exposed
   hosts: []
+  # ingress.tls -- TLS configuration
   tls: []
 appPod:
   resources:
+    # appPod.resources.requests -- Resources requests for spawned pods
     requests:
       cpu: 200m
       memory: 100Mi
+    # appPod.resources.limits -- Resources limits for spawned pods
     limits:
       cpu: 300m
       memory: 200Mi
+# proxy -- See https://www.shinyproxy.io/configuration/ for application configuration
+# @default -- Default values
 proxy:
   title: Open Analytics Shiny Proxy
   logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
@@ -21,23 +28,31 @@ proxy:
   container-backend: kubernetes
   kubernetes:
     internal-networking: true
+  # proxy.image -- ShinyProxy Docker image to use
   image:
     name: remche/shinyproxy
     tag: 2.3.1
+  # proxy.labels -- ShinyProxy deployment labels
   labels: {}
+  # proxy.annotations -- ShinyProxy deployment annotations
   annotations: {}
+  # proxy.nodeSelector -- ShinyProxy deployment node selector
   nodeSelector: {}
+  # proxy.service -- ShinyProxy service configuration
   service:
     type: ClusterIP
     annotations: {}
     ports:
       nodePort:
     loadBalancerIP:
+  # proxy.readinessProbe -- ShinyProxy deployment readiness probe
   readinessProbe: {}
   resources:
+    # proxy.resources.requests -- ShinyProxy pod resources requests
     requests:
       cpu: 200m
       memory: 512Mi
+    # proxy.resources.limits -- ShinyProxy pod resources limits
     limits:
       cpu: 300m
       memory: 800Mi
