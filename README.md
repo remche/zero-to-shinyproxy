@@ -9,7 +9,7 @@ This chart allows to deploy ShinyProxy on Kubernetes.
 ```bash
 $ helm repo add remche https://charts.remche.org
 $ helm repo update
-$ helm upgrade --install remche/shinyproxy -f config.yaml
+$ helm upgrade --install shinyproxy remche/shinyproxy -f config.yaml
 ```
 
 ## Configuration
