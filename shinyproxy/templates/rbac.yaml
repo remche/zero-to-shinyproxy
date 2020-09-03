@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: shiny
+  name: shinyproxy
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: shiny
+  name: shinyproxy
 rules:
   - apiGroups: [""]       # "" indicates the core API group
     resources: ["pods"]
@@ -15,12 +15,12 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: shiny
+  name: shinyproxy
 subjects:
   - kind: ServiceAccount
-    name: shiny
+    name: shinyproxy
     namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
   apiGroup: rbac.authorization.k8s.io
-  name: shiny
+  name: shinyproxy

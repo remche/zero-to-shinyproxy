@@ -31,7 +31,7 @@ spec:
             - name: SPRING_APPLICATION_JSON
               valueFrom:
                 secretKeyRef:
-                  name: shiny
+                  name: shinyproxy
                   key: secrets.json 
           volumeMounts:
           - name: application-conf
@@ -43,8 +43,8 @@ spec:
           readinessProbe:
             {{- .Values.proxy.readinessProbe | toYaml | trimSuffix "\n" | nindent 12 }}
           {{- end }}
-      serviceAccountName: shiny
+      serviceAccountName: shinyproxy
       volumes:
       - name: application-conf
         configMap:
-          name: shiny
+          name: shinyproxy

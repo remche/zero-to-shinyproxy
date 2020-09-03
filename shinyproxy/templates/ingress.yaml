@@ -2,7 +2,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: shiny
+  name: shinyproxy
+  labels:
+    {{- include "shinyproxy.labels" . | nindent 4 }}
 spec:
   rules:
     {{- range $host := .Values.ingress.hosts }}
@@ -11,7 +13,7 @@ spec:
         paths:
           - path: {{ index $.Values "proxy" "landing-page" }}
             backend:
-              serviceName: shiny
+              serviceName: shinyproxy
               servicePort: 8080
     {{- end }}
   {{- if .Values.ingress.tls }}
