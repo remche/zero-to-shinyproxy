@@ -42,6 +42,20 @@ spec:
           {{- if .Values.proxy.readinessProbe }}
           readinessProbe:
             {{- .Values.proxy.readinessProbe | toYaml | trimSuffix "\n" | nindent 12 }}
+          {{- else }}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+          {{- end }}
+          {{- if .Values.proxy.livenessProbe }}
+          livenessProbe:
+            {{- .Values.proxy.livenessProbe | toYaml | trimSuffix "\n" | nindent 12 }}
+          {{- else }}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
           {{- end }}
       serviceAccountName: shinyproxy
       volumes:

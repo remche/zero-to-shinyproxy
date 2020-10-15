@@ -31,7 +31,7 @@ proxy:
   # proxy.image -- ShinyProxy Docker image to use
   image:
     name: remche/shinyproxy
-    tag: 2.3.1
+    tag: 2.4.0
   # proxy.labels -- ShinyProxy deployment labels
   labels: {}
   # proxy.annotations -- ShinyProxy deployment annotations
@@ -45,6 +45,8 @@ proxy:
     ports:
       nodePort:
     loadBalancerIP:
+  # proxy.livenessProbe -- ShinyProxy deployment liveness probe
+  livenessProbe: {}
   # proxy.readinessProbe -- ShinyProxy deployment readiness probe
   readinessProbe: {}
   resources:
