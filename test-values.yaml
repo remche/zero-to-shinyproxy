@@ -5,9 +5,9 @@ ingress:
 proxy:
   title: Test
   logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
-    readinessProbe:
+  readinessProbe:
     httpGet:
-      path: /
+      path: //actuator/health/readiness
       port: 8080
     initialDelaySeconds: 30
   specs:
