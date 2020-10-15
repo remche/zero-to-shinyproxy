@@ -7,7 +7,7 @@ proxy:
   logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
   readinessProbe:
     httpGet:
-      path: //actuator/health/readiness
+      path: /actuator/health/readiness
       port: 8080
     initialDelaySeconds: 30
   specs:

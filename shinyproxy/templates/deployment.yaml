@@ -47,7 +47,6 @@ spec:
             httpGet:
               path: /actuator/health/readiness
               port: 8080
-            periodSeconds: 1
           {{- end }}
           {{- if .Values.proxy.livenessProbe }}
           livenessProbe:
@@ -57,14 +56,7 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
-            periodSeconds: 1
           {{- end }}
-          startupProbe:
-            httpGet:
-              path: /actuator/health/liveness
-              port: 8080
-            failureThreshold: 8
-            periodSeconds: 5
       serviceAccountName: shinyproxy
       volumes:
       - name: application-conf
