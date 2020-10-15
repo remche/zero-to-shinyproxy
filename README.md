@@ -41,7 +41,7 @@ You can specify you own image :
 proxy:
   image:
     name: remche/shinyproxy
-    tag: 2.3.1
+    tag: 2.4.0
 ```
 ### Resources
 
