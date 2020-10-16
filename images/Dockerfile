@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:11-jre
 
 ARG SHINYPROXY_VERSION=2.4.0
 
