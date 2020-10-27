@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "shinyproxy.labels" . | nindent 6 }}
+      {{- include "shinyproxy.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "shinyproxy.labels" . | nindent 8 }}
+        {{- include "shinyproxy.selectorLabels" . | nindent 8 }}
         {{- if .Values.proxy.labels }}
         {{- .Values.proxy.labels | toYaml | trimSuffix "\n" | nindent 8 }}
         {{- end }}
