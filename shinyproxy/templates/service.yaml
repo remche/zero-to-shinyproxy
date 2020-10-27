@@ -14,7 +14,7 @@ spec:
   loadBalancerIP: {{ .Values.proxy.service.loadBalancerIP }}
   {{- end }}
   selector:
-      {{- include "shinyproxy.labels" . | nindent 6 }}
+      {{- include "shinyproxy.selectorLabels" . | nindent 6 }}
   ports:
     - port: 8080
       targetPort: 8080

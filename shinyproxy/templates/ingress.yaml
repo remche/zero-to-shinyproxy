@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: shinyproxy
   labels:
-    {{- include "shinyproxy.selectorLabels" . | nindent 4 }}
+    {{- include "shinyproxy.labels" . | nindent 4 }}
 spec:
   rules:
     {{- range $host := .Values.ingress.hosts }}
