@@ -2,5 +2,5 @@ apiVersion: v2
 name: shinyproxy
 description: A Helm chart to install Shinyproxy
 type: application
-version: 0.4.2
+version: 0.4.3
 appVersion: 2.4.1
