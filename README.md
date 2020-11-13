@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/remche/zero-to-shinyproxy.svg?branch=master)](https://travis-ci.com/remche/zero-to-shinyproxy)
 
-This chart allows to deploy ShinyProxy on Kubernetes.
+This chart allows to deploy [ShinyProxy](https://github.com/openanalytics/shinyproxy) on Kubernetes.
 
 ## Installation
 
@@ -14,7 +14,7 @@ $ helm upgrade --install shinyproxy remche/shinyproxy -f config.yaml
 
 ## Configuration
 
-See [doc.md](doc.md).
+See [chart values](shinyproxy/README.md).
 
 ## Documentation
 
