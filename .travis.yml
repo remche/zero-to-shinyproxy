@@ -31,6 +31,6 @@ env:
     - K3S_VERSION=v1.17.9-k3s1 CONFIG_FILE=test-values.yaml
     - K3S_VERSION=v1.16.13-k3s1 CONFIG_FILE=test-values.yaml
   global:
-    - HELM_VERSION=v3.2.4
+    - HELM_VERSION=v3.4.1
     - K3D_VERSION=v1.7.0
 
