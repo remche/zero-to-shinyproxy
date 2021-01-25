@@ -1,6 +1,6 @@
 FROM openjdk:11-jre
 
-ARG SHINYPROXY_VERSION=2.4.2
+ARG SHINYPROXY_VERSION=2.4.3
 
 RUN useradd -s /bin/bash shiny
 RUN mkdir -p /opt/shinyproxy/ && chown shiny /opt/shinyproxy
