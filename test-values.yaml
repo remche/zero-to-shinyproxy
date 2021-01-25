@@ -5,6 +5,7 @@ ingress:
 proxy:
   title: Test
   logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
+  container-log-path: ./container-logs
   specs:
   - id: 01_hello
     display-name: Hello Application
