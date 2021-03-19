@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "shinyproxy.labels" . | nindent 4 }}
 data:
-{{- $values := pick .Values "proxy" "logging" }}
+{{- $values := pick .Values "proxy" "logging" "management" }}
 {{- $_ := set $values "proxy" (omit $values.proxy "image" "annotations" "labels" "nodeSelector" "resources" "service" "ldap" "kerberos" "keycloak" "openid" "saml" "social" "users") }}
 {{- range .Values.proxy.specs }}
   {{- if not (index . "container-memory-request") }}
