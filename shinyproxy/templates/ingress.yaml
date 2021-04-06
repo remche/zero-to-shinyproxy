@@ -5,6 +5,8 @@ metadata:
   name: shinyproxy
   labels:
     {{- include "shinyproxy.labels" . | nindent 4 }}
+  annotations:
+    {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
   rules:
     {{- range $host := .Values.ingress.hosts }}
