@@ -7,6 +7,8 @@ ingress:
   tls: []
   annotations: {}
   # ingress.annotations -- Annotations to add to the ingress
+  path: ""
+  # ingress.path -- Set path in the ingress. Defaults to proxy.landing-page if blank.
 appPod:
   resources:
     # appPod.resources.requests -- Resources requests for spawned pods
