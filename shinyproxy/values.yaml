@@ -5,6 +5,8 @@ ingress:
   hosts: []
   # ingress.tls -- TLS configuration
   tls: []
+  annotations: {}
+  # ingress.annotations -- Annotations to add to the ingress
 appPod:
   resources:
     # appPod.resources.requests -- Resources requests for spawned pods
