@@ -13,7 +13,7 @@ spec:
     - host: {{ $host | quote }}
       http:
         paths:
-          - path: {{ index $.Values "proxy" "landing-page" }}
+          - path: {{ default (index $.Values "proxy" "landing-page") $.Values.ingress.path }}
             backend:
               serviceName: shinyproxy
               servicePort: 8080
