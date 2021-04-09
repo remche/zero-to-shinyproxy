@@ -13,6 +13,7 @@ A Helm chart to install Shinyproxy
 | ingress.annotations | object | `{}` | Annotations to add to the ingress |
 | ingress.enabled | bool | `false` | Whether to expose via ingress controller |
 | ingress.hosts | list | `[]` | The hostname that should be exposed |
+| ingress.path | string | `""` | Set path in the ingress. Defaults to proxy.landing-page if blank. |
 | ingress.tls | list | `[]` | TLS configuration |
 | proxy | object | Default values | See https://www.shinyproxy.io/configuration/ for application configuration |
 | proxy.annotations | object | `{}` | ShinyProxy deployment annotations |
