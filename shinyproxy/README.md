@@ -1,6 +1,6 @@
 # shinyproxy
 
-![Version: 0.4.6](https://img.shields.io/badge/Version-0.4.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.5.0](https://img.shields.io/badge/AppVersion-2.5.0-informational?style=flat-square)
+![Version: 0.4.7](https://img.shields.io/badge/Version-0.4.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.5.0](https://img.shields.io/badge/AppVersion-2.5.0-informational?style=flat-square)
 
 A Helm chart to install Shinyproxy
 
@@ -11,6 +11,7 @@ A Helm chart to install Shinyproxy
 | appPod.resources.limits | object | `{"cpu":"300m","memory":"200Mi"}` | Resources limits for spawned pods |
 | appPod.resources.requests | object | `{"cpu":"200m","memory":"100Mi"}` | Resources requests for spawned pods |
 | ingress.annotations | object | `{}` | Annotations to add to the ingress |
+| ingress.classname | string | `nil` | IngressClass that should be used |
 | ingress.enabled | bool | `false` | Whether to expose via ingress controller |
 | ingress.hosts | list | `[]` | The hostname that should be exposed |
 | ingress.path | string | `""` | Set path in the ingress. Defaults to proxy.landing-page if blank. |

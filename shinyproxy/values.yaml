@@ -1,6 +1,8 @@
 ingress:
   # ingress.enabled -- Whether to expose via ingress controller
   enabled: false
+  # ingress.classname -- IngressClass that should be used
+  classname: null
   # ingress.hosts -- The hostname that should be exposed
   hosts: []
   # ingress.tls -- TLS configuration
