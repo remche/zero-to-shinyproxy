@@ -1,0 +1,54 @@
+name: tests
+on: 
+  pull_request:
+    paths-ignore:
+      - "**.md"
+      - ".github/workflows/*"
+      - "!.github/workflows/tests.yaml"
+  push:
+    paths-ignore:
+      - "**.md"
+      - ".github/workflows/*"
+      - "!.github/workflows/tests.yaml"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - K3S_VERSION: "latest"
+          - K3S_VERSION: "v1.20"
+          - K3S_VERSION: "v1.19"
+          - K3S_VERSION: "v1.18"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup /etc/hosts
+        run: sudo sed -i -re "s/^(127.0.0.1\\s.+)/\\1 shiny.test/" /etc/hosts
+      - uses: nolar/setup-k3d-k3s@v1
+        id: k3d
+        with: 
+          version: ${{ matrix.K3S_VERSION }}
+          k3d-args: -p 8000:80@loadbalancer
+      - uses: azure/setup-kubectl@v1
+        with:
+          version: ${{ steps.k3d.outputs.k8s-version }}
+      - uses: azure/setup-helm@v1
+      - name: Helm lint
+        run: helm lint shinyproxy
+      - name: Helm install
+        run: helm install shiny ./shinyproxy --values test-values.yaml
+      - name: Await Shinyproxy
+        run: |
+          kubectl rollout status --watch --timeout 300s deployment/shinyproxy \
+          || {
+                echo "Startup of ShinyProxy failed!"
+                kubectl describe pod -l app.kubernetes.io/name=shinyproxy
+                kubectl logs deployment/shinyproxy --all-containers # --prefix
+                exit 1
+             }
+          kubectl wait pod -l app.kubernetes.io/name=shinyproxy --for=condition=Ready --timeout=300s
+      - name: Install pip requirements
+        run: pip install --no-cache-dir -r dev-requirements.txt
+      - name: Test deployment
+        run: pytest --verbose --exitfirst ./tests
+
