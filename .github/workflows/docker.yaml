@@ -21,6 +21,7 @@ jobs:
     - uses: docker/build-push-action@v2
       with:
         context: images
+        push: true
         build-args: |
           SHINYPROXY_VERSION=${{ steps.yq.outputs.result }}
         tags: ${{ steps.yq.outputs.result }}
