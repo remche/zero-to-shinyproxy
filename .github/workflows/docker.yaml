@@ -24,4 +24,4 @@ jobs:
         push: true
         build-args: |
           SHINYPROXY_VERSION=${{ steps.yq.outputs.result }}
-        tags: ${{ steps.yq.outputs.result }}
+        tags: remche/shinyproxy:${{ steps.yq.outputs.result }}
