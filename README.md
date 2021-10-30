@@ -19,7 +19,7 @@ See [chart values](shinyproxy/README.md).
 ## Documentation
 
 ### ShinyProxy configuration
-You can specify ShinyProxy configuration like you would do in [application.yaml](https://www.shinyproxy.io/configuration/). Relevant fields will be injected via ConfigMap and Secret.
+You can specify ShinyProxy configuration like you would do in [application.yaml](https://www.shinyproxy.io/documentation/configuration/). Relevant fields will be injected via ConfigMap and Secret.
 
 ### Ingress
 
