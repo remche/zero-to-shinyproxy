@@ -7,6 +7,9 @@ metadata:
 data:
 {{- $values := pick .Values "proxy" "logging" "management" }}
 {{- $_ := set $values "proxy" (omit $values.proxy "image" "annotations" "labels" "nodeSelector" "resources" "service" "ldap" "kerberos" "keycloak" "openid" "saml" "social" "users") }}
+{{- if not (hasKey $values.proxy.kubernetes "namespace") }}
+  {{- $_ := set $values.proxy.kubernetes "namespace" .Release.Namespace }}
+{{- end }}
 {{- range .Values.proxy.specs }}
   {{- if not (index . "container-memory-request") }}
     {{- $_ := set . "container-memory-request" $.Values.appPod.resources.requests.memory }}
