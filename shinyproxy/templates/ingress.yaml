@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: shinyproxy
@@ -17,9 +17,12 @@ spec:
       http:
         paths:
           - path: {{ default (index $.Values "proxy" "landing-page") $.Values.ingress.path }}
+            pathType: Prefix
             backend:
-              serviceName: shinyproxy
-              servicePort: 8080
+              service:
+                name: shinyproxy
+                port: 
+                  number: 8080
     {{- end }}
   {{- if .Values.ingress.tls }}
   tls:
