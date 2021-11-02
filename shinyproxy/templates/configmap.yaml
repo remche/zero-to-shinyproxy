@@ -23,6 +23,11 @@ data:
   {{- if not (index . "container-cpu-limit") }}
     {{- $_ := set . "container-cpu-limit" $.Values.appPod.resources.limits.cpu }}
   {{- end }}
+  {{- if (index . "labels") }}
+    {{- $_ := set . "labels" (merge .labels (dict "z2sp.instance" $.Release.Name)) }}
+  {{- else }}
+    {{- $_ := set . "labels" (dict "z2sp.instance" $.Release.Name) }}
+  {{- end }}
 {{- end }}
   application.yml: |
   {{- $values | toYaml | nindent 4 }}
