@@ -64,3 +64,4 @@ proxy:
     limits:
       cpu: 300m
       memory: 800Mi
+createUsersNamespace: false
