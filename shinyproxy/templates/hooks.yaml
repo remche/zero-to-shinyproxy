@@ -20,4 +20,12 @@ spec:
       containers:
       - name: delete-user-pods
         image: bitnami/kubectl:{{ .Capabilities.KubeVersion.Major }}.{{ .Capabilities.KubeVersion.Minor }}
-        args: ["delete", "pods", "-l", "z2sp.instance={{ .Release.Name }}"]
+        args:
+          - "delete"
+          - "pods"
+          - "-l"
+          - "z2sp.instance={{ .Release.Name }}"
+          {{- if (hasKey .Values.proxy.kubernetes "namespace") }}  
+          - "-n"
+          - "{{ .Values.proxy.kubernetes.namespace }}"
+          {{- end }}
