@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: mikefarah/yq@v4.19.1
+    - uses: mikefarah/yq@v4.20.1
       id: yq
       with:
         cmd: yq eval '.appVersion' shinyproxy/Chart.yaml
