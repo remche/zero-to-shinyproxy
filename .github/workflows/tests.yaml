@@ -21,7 +21,7 @@ jobs:
           - K3S_VERSION: "v1.21"
           - K3S_VERSION: "v1.20"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup /etc/hosts
         run: sudo sed -i -re "s/^(127.0.0.1\\s.+)/\\1 shiny.test/" /etc/hosts
       - uses: nolar/setup-k3d-k3s@v1
