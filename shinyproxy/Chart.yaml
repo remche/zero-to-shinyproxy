@@ -3,4 +3,4 @@ name: shinyproxy
 description: A Helm chart to install Shinyproxy
 type: application
 version: 0.6.2
-appVersion: 2.6.0
+appVersion: 2.6.1
