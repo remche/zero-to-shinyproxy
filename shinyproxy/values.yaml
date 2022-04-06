@@ -37,7 +37,7 @@ proxy:
   # proxy.image -- ShinyProxy Docker image to use
   image:
     name: remche/shinyproxy
-    tag: 2.6.0
+    tag: 2.6.1
   # proxy.labels -- ShinyProxy deployment labels
   labels: {}
   # proxy.annotations -- ShinyProxy deployment annotations
