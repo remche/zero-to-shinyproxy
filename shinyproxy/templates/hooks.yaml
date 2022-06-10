@@ -16,7 +16,7 @@ spec:
         {{- include "shinyproxy.labels" . | nindent 8 }}
     spec:
       restartPolicy: Never
-      serviceAccountName: shinyproxy
+      serviceAccountName: {{ include "shinyproxy.resourcename" . }}
       containers:
       - name: delete-user-pods
         image: bitnami/kubectl:{{ .Capabilities.KubeVersion.Major }}.{{ .Capabilities.KubeVersion.Minor }}
