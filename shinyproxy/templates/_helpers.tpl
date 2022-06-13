@@ -61,3 +61,11 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "shinyproxy.resourcename" -}}
+{{- if .Values.useReleaseName }}
+{{- printf "%s" (include "shinyproxy.fullname" .) }}
+{{- else }}
+{{- printf "%s" "shinyproxy" }}
+{{- end }}
+{{- end }}

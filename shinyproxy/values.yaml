@@ -65,3 +65,4 @@ proxy:
       cpu: 300m
       memory: 800Mi
 createUsersNamespace: false
+useReleaseName: false

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: shinyproxy
+  name: {{ include "shinyproxy.resourcename" . }}
   labels:
     {{- include "shinyproxy.labels" . | nindent 4 }}
   {{- if .Values.proxy.service.annotations }}

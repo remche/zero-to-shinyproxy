@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: shinyproxy
+  name: {{ include "shinyproxy.resourcename" . }}
   labels:
     {{- include "shinyproxy.labels" . | nindent 4 }}
 data:

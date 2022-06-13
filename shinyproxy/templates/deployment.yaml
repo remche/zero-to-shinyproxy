@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     {{- include "shinyproxy.labels" . | nindent 4 }}
-  name: shinyproxy
+  name: {{ include "shinyproxy.resourcename" . }}
 spec:
   replicas: 1
   selector:
@@ -31,7 +31,7 @@ spec:
             - name: SPRING_APPLICATION_JSON
               valueFrom:
                 secretKeyRef:
-                  name: shinyproxy
+                  name: {{ include "shinyproxy.resourcename" . }}
                   key: secrets.json 
           volumeMounts:
           - name: application-conf
@@ -63,8 +63,8 @@ spec:
             initialDelaySeconds: 40
             timeoutSeconds: 5
           {{- end }}
-      serviceAccountName: shinyproxy
+      serviceAccountName: {{ include "shinyproxy.resourcename" . }}
       volumes:
       - name: application-conf
         configMap:
-          name: shinyproxy
+          name: {{ include "shinyproxy.resourcename" . }}
