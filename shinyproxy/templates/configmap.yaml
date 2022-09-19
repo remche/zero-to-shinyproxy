@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "shinyproxy.labels" . | nindent 4 }}
 data:
-{{- $values := pick .Values "proxy" "logging" "management" }}
+{{- $values := pick .Values "proxy" "logging" "management" "server" }}
 {{- $_ := set $values "proxy" (omit $values.proxy "image" "annotations" "labels" "nodeSelector" "resources" "service" "ldap" "kerberos" "keycloak" "openid" "saml" "social" "users") }}
 {{- if not (hasKey $values.proxy.kubernetes "namespace") }}
   {{- $_ := set $values.proxy.kubernetes "namespace" .Release.Namespace }}
