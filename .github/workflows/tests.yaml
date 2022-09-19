@@ -17,9 +17,9 @@ jobs:
       matrix:
         include:
           - K3S_VERSION: "latest"
+          - K3S_VERSION: "v1.24"
           - K3S_VERSION: "v1.23"
           - K3S_VERSION: "v1.22"
-          - K3S_VERSION: "v1.21"
     steps:
       - uses: actions/checkout@v3
       - name: Setup /etc/hosts
