@@ -29,7 +29,7 @@ jobs:
         with: 
           version: ${{ matrix.K3S_VERSION }}
           k3d-args: -p 8000:80@loadbalancer
-      - uses: azure/setup-kubectl@v3.1
+      - uses: azure/setup-kubectl@v3.2
         with:
           version: ${{ steps.k3d.outputs.k8s-version }}
       - uses: azure/setup-helm@v3.5
