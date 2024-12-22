@@ -2,6 +2,10 @@
 
 [![tests](https://github.com/remche/zero-to-shinyproxy/actions/workflows/tests.yaml/badge.svg)](https://github.com/remche/zero-to-shinyproxy/actions/workflows/tests.yaml)
 
+> [!WARNING]
+> This chart is not maintained anymore. You will find a maintained and improved version at [https://gitlab.com/devxy/helm/shinyproxy](https://gitlab.com/devxy/helm/shinyproxy).
+
+
 This chart allows to deploy [ShinyProxy](https://github.com/openanalytics/shinyproxy) on Kubernetes.
 
 ## Installation
